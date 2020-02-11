@@ -35,7 +35,7 @@ struct settings
 } g_settings = {
     .bindhost = "localhost", // Default: listen only on localhost interface
     .bindport = "5000",      // Default: listen on TCP port 5000
-    .rootdir = "",
+    .rootdir = "./templates", // Default: root directory is /templates
     .maxChilds = 5,
 };
 
@@ -222,6 +222,8 @@ void handle_client(struct client_info *client)
     }
 
     mergeRootDirectory(request->path, g_settings.rootdir, &request->fullPath);
+            printf("%s\n", request->fullPath);
+
     if (errjo != 1 || !request->fullPath)
     {
         analyzeErrjo(stream, request->path);

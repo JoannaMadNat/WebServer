@@ -198,6 +198,7 @@ void parseHttp(FILE *in, http_request_t **request)
             goto cleanup;
         }
     }
+    
     req->path = token;
 
     token = strtok_r(NULL, " ", &saveptr); //Extract version
@@ -210,7 +211,7 @@ void parseHttp(FILE *in, http_request_t **request)
     token[9] = '\0';
     token[8] = '\0';
 
-    if (strcmp(token, "HTTP/1.0") != 0 && strcmp(token, "HTTP/1.1\n") != 0)
+    if (strcmp(token, "HTTP/1.0") != 0 && strcmp(token, "HTTP/1.1") != 0)
     {
         errjo = INVERS;
         goto cleanup;
